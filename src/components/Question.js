@@ -12,7 +12,7 @@ const Question = ({ question, checkAnswer, questionIndex, totalCountArray, setTo
       item = item.replaceAll("&ntilde;", "ñ");
       item = item.replaceAll("&oacute;", "ó");
       item = item.replaceAll("&deg;", "°");
-
+      item = item.replaceAll("&shy;", " ")
       return item.split("!*!");
     }
     item = item.replaceAll("&quot;", '"');
@@ -22,6 +22,8 @@ const Question = ({ question, checkAnswer, questionIndex, totalCountArray, setTo
     item = item.replaceAll("&aacute;", "á");
     item = item.replaceAll("&oacute;", "ó");
     item = item.replaceAll("&ntilde;", "ñ");
+    item = item.replaceAll("&shy;", " ")
+
 
     return item;
   };
