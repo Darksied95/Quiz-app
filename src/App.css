@@ -1,38 +1,139 @@
-.App {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  position: relative;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.lemon,
+.blue {
+  width: 297px;
+  height: 235px;
+}
+.lemon {
+  background-color: #fffad1;
+  position: fixed;
+  top: -10vh;
+  right: -10vw;
+  transform: rotate(30deg);
+  border-radius: 50%;
+  z-index: -1;
+}
+.blue {
+  background-color: #deebf8;
+  border-radius: 50%;
+  position: fixed;
+  bottom: -10vw;
+  left: -10vw;
+  z-index: -1;
+}
+main {
+  display: grid;
+  place-content: center;
+  height: 100vh;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+  font-size: 1.953rem;
+  line-height: 2.25em;
+  color: #293264;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.description {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.1875em;
+  text-align: center;
+  color: #293264;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.start-quiz-button,
+.check-answer-button {
+  background: #4d5b9e;
+  border-radius: 15px;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.1875em;
+  color: #f5f7fb;
+  padding: 1em 1.75em;
+  margin-top: 2.2em;
+  border: 0;
+}
+.start-quiz-button:hover {
+  color: #4d5b9e;
+  background-color: #f5f7fb;
+  border: 1px solid #4d5b9e;
+}
+.question-container {
+  width: 60vw;
+  margin: 2.5rem auto;
+  padding-bottom: 0.9375rem;
+  border-bottom: 1px solid #dbdef0;
+}
+.question-title {
+  font-family: "Karla";
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.1875em;
+  color: #293264;
+}
+button {
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 0.64rem;
+  line-height: 1.171875em;
+  text-align: center;
+  color: #293264;
+  background: #f5f7fb;
+  margin-top: 0.74875em;
+  margin-right: 0.794375rem;
+  padding: 0.5em 1em;
+  border: 0.794239px solid #4d5b9e;
+  border-radius: 7.94239px;
+}
+.check-answer-button {
+  display: block;
+  margin: auto;
+}
+.game-over {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 50vw;
+  margin: auto;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
-
-.App-link {
-  color: #61dafb;
+.game-over p {
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1.172em;
+  text-align: center;
+  color: #293264;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.game-over button {
+  background: #4d5b9e;
+  border-radius: 15px;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.1875em;
+  color: #f5f7fb;
+  margin-left: 2em;
+  padding: 0.7em 1em;
+  border: 0;
+}
+.loading {
+  font-size: 3rem;
+  width: 60vw;
+  margin: auto;
+  color: #293264;
 }
