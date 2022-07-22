@@ -2,38 +2,8 @@ import { useState, useEffect } from "react";
 const Question = ({ question, checkAnswer, questionIndex, totalCountArray, setTotalCount, playAgain }) => {
   const { question: Question, correct_answer, incorrect_answers } = question;
   const [selectedAnswer, setSelectedAnswer] = useState("");
-  const cleanUp = (item) => {
-    if (typeof item === "object") {
-      item = item.join("!*!");
-      item = item.replaceAll("&quot;", '"');
-      item = item.replaceAll("&#039;", "'");
-      item = item.replaceAll("&eacute;", "é");
-      item = item.replaceAll("&aacute;", "á");
-      item = item.replaceAll("&ntilde;", "ñ");
-      item = item.replaceAll("&oacute;", "ó");
-      item = item.replaceAll("&deg;", "°");
-      item = item.replaceAll("&shy;", " ")
-      return item.split("!*!");
-    }
-    item = item.replaceAll("&quot;", '"');
-    item = item.replaceAll("&#039;", "'");
-    item = item.replaceAll("&deg;", "°");
-    item = item.replaceAll("&eacute;", "é");
-    item = item.replaceAll("&aacute;", "á");
-    item = item.replaceAll("&oacute;", "ó");
-    item = item.replaceAll("&ntilde;", "ñ");
-    item = item.replaceAll("&shy;", " ")
-
-
-    return item;
-  };
-  let combinedAnswers = [correct_answer, ...incorrect_answers].sort(
-    (a, b) => a.localeCompare(b)
-  );
-  const cleanedUpQuestion = cleanUp(Question);
-  const cleanedUpAnswers = cleanUp(combinedAnswers);
-  const cleanedUpCorrectAnswer = cleanUp(correct_answer)
-  const indexOfCorrectAnswer = cleanedUpAnswers.indexOf(cleanedUpCorrectAnswer)
+  const combinedAnswers = [correct_answer, ...incorrect_answers].sort((a, b) => a.localeCompare(b));
+  const indexOfCorrectAnswer = combinedAnswers.indexOf(correct_answer)
 
   let styles = {
     backgroundColor: "#D6DBF5",
@@ -60,7 +30,7 @@ const Question = ({ question, checkAnswer, questionIndex, totalCountArray, setTo
   };
 
 
-  const obj = (index) => {
+  const setCorrectAnswerStyle = (index) => {
     if (checkAnswer) {
       let successStyles = {
         backgroundColor: "#94D7A2",
@@ -89,20 +59,20 @@ const Question = ({ question, checkAnswer, questionIndex, totalCountArray, setTo
     return index === selectedAnswer ? styles : null;
   }
 
-
+  function correctMarkUp(text) {
+    return { __html: text }
+  }
   return (
     <div className="question-container">
-      <h1 className="question-title">{cleanedUpQuestion}</h1>
-
-      {cleanedUpAnswers.map((answer, index) => (
-        <button
+      <h1 className="question-title" dangerouslySetInnerHTML={correctMarkUp(Question)} />
+      {combinedAnswers.map((answer, index) => {
+        return <button
           key={index}
           onClick={() => handleClick(index)}
-          style={obj(index)}
-        >
-          {answer}
-        </button>
-      ))}
+          style={setCorrectAnswerStyle(index)}
+          dangerouslySetInnerHTML={correctMarkUp(answer)}
+        />
+      })}
 
     </div>
   );

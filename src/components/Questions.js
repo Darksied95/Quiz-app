@@ -9,7 +9,6 @@ const Questions = () => {
     const [totalCountArray, setTotalCount] = useState([]);
     const [playAgain, setPlayAgain] = useState(true)
     let totalCount = 0
-
     const getQuestions = async () => {
         const { data } = await axios.get("https://opentdb.com/api.php?amount=5&type=multiple");
         setQuestions(data.results)
@@ -17,26 +16,29 @@ const Questions = () => {
         setPlayAgain(false)
     }
     const handlePlayAgain = () => {
+        setQuestionLength(0)
         setCheckAnswer(false)
         setTotalCount([])
         setPlayAgain(true)
+        getQuestions()
     }
 
     const handleCheckAnswer = () => {
         setCheckAnswer(true)
     }
-    useEffect(() => {
 
-        if (playAgain) {
-            getQuestions();
-        }
-    }, [playAgain])
+    useEffect(() => {
+        getQuestions();
+        console.log("done");
+    }, [])
 
 
     useEffect(() => {
         let emptyArray = Array(questionLength).fill(0);
         setTotalCount(emptyArray)
-    }, [questionLength])
+    }, [questionLength]);
+
+
     if (checkAnswer) {
         totalCount = totalCountArray.reduce((acc, cv) => acc + cv, 0)
     }
@@ -59,7 +61,8 @@ const Questions = () => {
                 : <div className="game-over">
                     <p>You scored {totalCount}/{questionLength} correct answers</p>
                     <button onClick={handlePlayAgain}>Play again</button>
-                </div>}
+                </div>
+            }
             <div className="blue"></div>
 
         </>

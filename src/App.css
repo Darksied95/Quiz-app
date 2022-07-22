@@ -5,18 +5,15 @@
 }
 body {
   position: relative;
-  height: 100vh;
   margin: 0;
-  padding: 0;
-  width: 100vw;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  padding: 2rem 0;
 }
 
 .lemon,
 .blue {
   width: 297px;
   height: 235px;
+  font-size: 1rem;
 }
 .lemon {
   background-color: #fffad1;
@@ -38,7 +35,7 @@ body {
 main {
   display: grid;
   place-content: center;
-  height: 100vh;
+  height: 80vh;
   text-align: center;
 }
 .title {
